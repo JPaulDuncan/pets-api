@@ -8,14 +8,12 @@ import {
   OwnersAPI,
 } from './owners.interface';
 import { owners } from "./db/owner.data";
-import { Pets, PetsAPI } from '../pet/pets.interface';
-import { pets } from "../pet/db/pet.data";
+import { PetsAPI } from '../pet/pets.interface';
 import { PetsService } from '../pet/pets.service';
 
 @Injectable()
 export class OwnersService {
   owners = owners;
-  pets = pets;
 
   constructor(private petService: PetsService){ }
 
