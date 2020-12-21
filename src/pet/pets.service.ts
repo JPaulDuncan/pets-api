@@ -2,25 +2,20 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Count } from 'src/core/interfaces/collection.interface';
 import { Utils } from '../utils/utils';
 
-import {
-  Pet,
-  Pets,
-  PetsAPI,
-} from './pets.interface';
-import { pets } from "./db/pet.data";
+import { Pet, Pets, PetsAPI } from './pets.interface';
+import { pets } from './db/pet.data';
 
 @Injectable()
 export class PetsService {
   pets = pets;
 
-  getPets(
-    search?: string,
-    page?: string,
-    pageSize?: string,
-  ): PetsAPI {
+  getPets(search?: string, page?: string, pageSize?: string): PetsAPI {
+    let filteredPets;
     // let filteredPets = this.filter(search);
-      let filteredPets = this.pets.filter(pet => pet.ownerId === search);
-      filteredPets = this.paginate(
+    if (search) filteredPets = this.pets.filter(pet => pet.ownerId === search);
+    else filteredPets = this.pets;
+
+    filteredPets = this.paginate(
       filteredPets,
       parseInt(page, 10),
       parseInt(pageSize, 10),
@@ -28,8 +23,7 @@ export class PetsService {
 
     return {
       items: filteredPets,
-      hasNext:
-        this.pets.length > parseInt(pageSize, 10) * parseInt(page, 10),
+      hasNext: this.pets.length > parseInt(pageSize, 10) * parseInt(page, 10),
     };
   }
 
@@ -38,9 +32,7 @@ export class PetsService {
   }
 
   delete(id: string): { message: string } {
-    const index = this.pets.findIndex(
-      pet => pet.id === id,
-    );
+    const index = this.pets.findIndex(pet => pet.id === id);
 
     if (index === -1) {
       throw new NotFoundException(`Pet ${id} não existe!`);
@@ -74,16 +66,10 @@ export class PetsService {
   }
 
   private filter(search?: string) {
-    return search
-      ? Utils.filterByAll(search, this.pets)
-      : this.pets;
+    return search ? Utils.filterByAll(search, this.pets) : this.pets;
   }
 
-  petsDiffDate(
-    date: string,
-    page?: string,
-    pageSize?: string,
-  ): PetsAPI {
+  petsDiffDate(date: string, page?: string, pageSize?: string): PetsAPI {
     let petsDiff = this.pets.filter(pet => {
       return new Date(pet.updatedDate) >= new Date(date);
     });
@@ -96,8 +82,7 @@ export class PetsService {
 
     return {
       items: petsDiff,
-      hasNext:
-        this.pets.length > parseInt(pageSize, 10) * parseInt(page, 10),
+      hasNext: this.pets.length > parseInt(pageSize, 10) * parseInt(page, 10),
     };
   }
 
