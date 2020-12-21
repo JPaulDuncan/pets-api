@@ -20,16 +20,12 @@ import { Count } from 'src/core/interfaces/collection.interface';
 
 import { ParamQueryId, QueryApi } from 'src/core/interfaces/query.interface';
 
-import {
-  Owner,
-  Owners,
-  OwnersAPI,
-} from './owners.interface';
+import { Owner, Owners, OwnersAPI } from './owners.interface';
 
 import { OwnersService } from './owners.service';
 
 import { CreateOwnersDto } from './dto/create-owners.dto';
-import { GetOwnersDto } from "./dto/get-owners.dto";
+import { GetOwnersDto } from './dto/get-owners.dto';
 import { Pets, PetsAPI } from 'src/pet/pets.interface';
 
 @ApiTags('Owners')
@@ -46,11 +42,7 @@ export class OwnersController {
   getOwners(@Query() query: QueryApi): OwnersAPI {
     const { search, filter, page, pageSize } = query;
 
-    return this.ownersService.getOwners(
-      search || filter,
-      page,
-      pageSize,
-    );
+    return this.ownersService.getOwners(search || filter, page, pageSize);
   }
 
   @Get('count')
@@ -110,10 +102,6 @@ export class OwnersController {
     @Query() query: QueryApi,
   ): OwnersAPI {
     const { page, pageSize } = query;
-    return this.ownersService.ownersDiffDate(
-      param.date,
-      page,
-      pageSize,
-    );
+    return this.ownersService.ownersDiffDate(param.date, page, pageSize);
   }
 }

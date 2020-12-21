@@ -15,7 +15,7 @@ export class CreateConferencesDto {
 
   @ApiPropertyOptional()
   description: string;
-    
+
   @ApiPropertyOptional()
   po_sync_date: Date;
 }

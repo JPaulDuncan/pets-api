@@ -3,7 +3,7 @@ import { Conferences } from '../conferences.interface';
 export const conferences: Conferences = [
   {
     id: '1',
-    title: 'POUI conference 2017',
+    title: 'POUI conference sample',
     date: '2017-08-11T00:00:00Z',
     location: 'Av. Santos Dumont, 831 - Santo Antônio, Joinville - SC',
     description: 'Conference organized by POUI',
