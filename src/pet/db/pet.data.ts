@@ -8,6 +8,8 @@ export const pets: Pets = [
     ownerId: "1",
     breed: 75,
     size: 43,
+    createdDate: '2020-10-06T12:40:54.865Z',
+    updatedDate: '2020-10-06T12:40:54.865Z',
     birthday: 1607970945,
     species: 87,
     deleted: false
@@ -17,6 +19,8 @@ export const pets: Pets = [
     name: "quesh",
     nickName: "quesh",
     ownerId: "2",
+    createdDate: '2020-10-06T12:40:54.865Z',
+    updatedDate: '2020-10-06T12:40:54.865Z',
     breed: 31,
     size: 56,
     birthday: 1607976705,
