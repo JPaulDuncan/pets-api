@@ -9,7 +9,7 @@ export const owners: Owners = [
     address: 'address 6',
     createdDate: '2020-10-06T12:40:54.865Z',
     updatedDate: '2020-10-06T12:40:54.865Z',
-    birthday: 1607264484,
+    birthday: '1996-06-16',
     deleted: false,
   },
   {
@@ -20,7 +20,7 @@ export const owners: Owners = [
     address: 'address 7',
     createdDate: '2020-10-06T12:40:54.865Z',
     updatedDate: '2020-10-06T12:40:54.865Z',
-    birthday: 1607264424,
+    birthday: '1960-08-30',
     deleted: false,
   },
 ];

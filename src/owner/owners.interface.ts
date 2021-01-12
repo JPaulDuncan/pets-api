@@ -12,5 +12,5 @@ export interface Owner extends Item {
   email?: string;
   phone?: string;
   address?: string;
-  birthday?: number;
+  birthday?: string;
 }
