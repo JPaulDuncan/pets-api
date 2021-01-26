@@ -10,6 +10,7 @@ import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { OwnersModule } from './owner/owners.module';
 import { PetsModule } from './pet/pets.module';
+import { SchemasModule } from './schema/owners.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { PetsModule } from './pet/pets.module';
     AuthModule,
     OwnersModule,
     PetsModule,
+    SchemasModule,
   ],
   controllers: [AppController],
 })

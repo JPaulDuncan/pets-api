@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   Query,
+  UseInterceptors,
 } from '@nestjs/common';
 
 import {
@@ -27,9 +28,11 @@ import { OwnersService } from './owners.service';
 import { CreateOwnersDto } from './dto/create-owners.dto';
 import { GetOwnersDto } from './dto/get-owners.dto';
 import { Pets, PetsAPI } from 'src/pet/pets.interface';
+import { PoSyncDateInterceptor } from 'src/core/interceptor/po-sync-date.interceptor';
 
 @ApiTags('Owners')
 @Controller('owner')
+@UseInterceptors(PoSyncDateInterceptor)
 export class OwnersController {
   constructor(private ownersService: OwnersService) {}
 

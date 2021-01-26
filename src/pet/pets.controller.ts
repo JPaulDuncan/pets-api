@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   Query,
+  UseInterceptors,
 } from '@nestjs/common';
 
 import {
@@ -20,18 +21,16 @@ import { Count } from 'src/core/interfaces/collection.interface';
 
 import { ParamQueryId, QueryApi } from 'src/core/interfaces/query.interface';
 
-import {
-  Pet,
-  Pets,
-  PetsAPI,
-} from './pets.interface';
+import { Pet, Pets, PetsAPI } from './pets.interface';
 
 import { PetsService } from './pets.service';
 
 import { CreatePetsDto } from './dto/create-pets.dto';
-import { GetPetsDto } from "./dto/get-pets.dto";
+import { GetPetsDto } from './dto/get-pets.dto';
+import { PoSyncDateInterceptor } from 'src/core/interceptor/po-sync-date.interceptor';
 
 @ApiTags('Pets')
+@UseInterceptors(PoSyncDateInterceptor)
 @Controller('pet')
 export class PetsController {
   constructor(private petsService: PetsService) {}
@@ -45,11 +44,7 @@ export class PetsController {
   getPets(@Query() query: QueryApi): PetsAPI {
     const { search, filter, page, pageSize } = query;
 
-    return this.petsService.getPets(
-      search || filter,
-      page,
-      pageSize,
-    );
+    return this.petsService.getPets(search || filter, page, pageSize);
   }
 
   @Get('count')
@@ -102,10 +97,6 @@ export class PetsController {
     @Query() query: QueryApi,
   ): PetsAPI {
     const { page, pageSize } = query;
-    return this.petsService.petsDiffDate(
-      param.date,
-      page,
-      pageSize,
-    );
+    return this.petsService.petsDiffDate(param.date, page, pageSize);
   }
 }
